@@ -15,8 +15,7 @@ record CFunctor (cat1 : Category) (cat2 : Category) where
   preserveIdentity : (a : object cat1)
     -> mapMorphism a a (identity cat1 a) = identity cat2 (mapObject a)
 
-  preserveCompose : (a, b, c : object cat1)
-    -> (f : morphism cat1 a b) -> (g : morphism cat1 b c)
+  preserveCompose : (a, b, c : object cat1) -> (f : morphism cat1 a b) -> (g : morphism cat1 b c)
     -> mapMorphism a c (compose cat1 a b c f g)
       = compose cat2 (mapObject a) (mapObject b) (mapObject c) (mapMorphism a b f) (mapMorphism b c g)
 

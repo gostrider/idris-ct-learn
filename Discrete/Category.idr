@@ -13,13 +13,17 @@ record Category where
   identity : (a : object) -> morphism a a
 
   compose : (a, b, c : object) -> (f : morphism a b) -> (g : morphism b c) -> morphism a c
+  --- compose Int Int Int (Int -> Int) (Int -> Int)
 
   leftIdentity : (a, b : object) -> (f : morphism a b) -> compose a a b (identity a) f = f
+  -- (return 1 >>= (\x => Just $ x + 1)) == f x
+  -- id . g = g
 
   rightIdentity : (a, b : object) -> (f : morphism a b) -> compose a b b f (identity b) = f
+  -- (Just 1 >>= return) == x
+  -- f . id = f
 
-  associativity : (a, b, c, d : object)
-    -> (f : morphism a b) -> (g : morphism b c) -> (h : morphism c d)
+  associativity : (a, b, c, d : object) -> (f : morphism a b) -> (g : morphism b c) -> (h : morphism c d)
     -> compose a b d f (compose b c d g h) = compose a c d (compose a b c f g) h
 
 
